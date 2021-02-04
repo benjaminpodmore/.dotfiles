@@ -1,7 +1,14 @@
 #!/bin/bash
-ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
-ln -s ~/.dotfiles/.zshrc ~/.zshrc
-ln -s ~/.dotfiles/.oh-my-zsh ~/.oh-my-zsh
-ln -s ~/.dotfiles/.p10k.zsh ~/.p10k.zsh
-ln -s ~/.dotfiles/.vimrc ~/.vimrc
-ln -s ~/.dotfiles/.vim_runtime ~/.vim_runtime
+
+FILES=".gitconfig .zshrc .p10k.zsh .vimrc .oh-my-zsh .vim_runtime"
+
+for FILE in $FILES
+do
+    if [ -e "/home/benjamin/$FILE" ]
+    then
+        echo "$FILE exists"
+    else
+        ln -s "/home/benjamin/.dotfiles/$FILE" "/home/benjamin/$FILE"
+        echo "Linked $FILE to home directory"
+    fi
+done
